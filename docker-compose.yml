@@ -2,17 +2,18 @@
 services:
   api:
     container_name: api
-    image: gradle:8.7.0-jdk17
+    build:
+      context: .
+      dockerfile: ./.docker/api/Dockerfile
     restart: always
     depends_on:
       db:
         condition: service_healthy
     volumes:
-      - ./api:/app
+      - ./api:/home/gradle
 
   web:
     container_name: web
-    image: node:18.17.1-alpine
     build:
       context: .
       dockerfile: ./.docker/web/Dockerfile
