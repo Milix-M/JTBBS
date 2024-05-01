@@ -25,6 +25,8 @@ services:
       - CHOKIDAR_USEPOLLING=true
     depends_on:
       - api
+    ports:
+      - 3000:3000
 
   db:
     container_name: database
