@@ -1,6 +1,7 @@
 # JTBBS
 ## About JTBBS
 これはJavaとTypeScriptで作成されたBBS(Bulletin Board System)です.
+Javaの勉強の一環として作成.
 ## 技術スタック
 ### API
 - Java 17
