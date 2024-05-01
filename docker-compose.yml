@@ -2,17 +2,20 @@
 services:
   api:
     container_name: api
-    image: gradle:8.7.0-jdk11
+    build:
+      context: .
+      dockerfile: ./.docker/api/Dockerfile
     restart: always
     depends_on:
       db:
         condition: service_healthy
     volumes:
-      - ./api:/app
+      - ./api:/home/gradle
+    ports:
+      - 8080:8080
 
   web:
     container_name: web
-    image: node:18.17.1-alpine
     build:
       context: .
       dockerfile: ./.docker/web/Dockerfile
@@ -22,6 +25,8 @@ services:
       - CHOKIDAR_USEPOLLING=true
     depends_on:
       - api
+    ports:
+      - 3000:3000
 
   db:
     container_name: database
