@@ -1,0 +1,48 @@
+
+services:
+  api:
+    container_name: api
+    image: gradle:8.7.0-jdk11
+    restart: always
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - ./api:/app
+
+  web:
+    container_name: web
+    image: node:18.17.1-alpine
+    build:
+      context: .
+      dockerfile: ./.docker/web/Dockerfile
+    restart: always
+    tty: true
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    depends_on:
+      - api
+
+  db:
+    container_name: database
+    image: postgres:16-bullseye
+    environment:
+      POSTGRES_USER: postgres_user
+      POSTGRES_PASSWORD: postgres_password
+      POSTGRES_DB: app
+      encoding: utf8
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    restart: always
+    healthcheck:
+      test: pg_isready -U postgres_user -d app
+      interval: 2s
+      timeout: 3s
+      retries: 40
+    ports:
+      - 5432:5432
+
+volumes:
+  node_modules:
+  next_build:
+  db_data:
