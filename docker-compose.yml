@@ -11,6 +11,8 @@ services:
         condition: service_healthy
     volumes:
       - ./api:/home/gradle
+    ports:
+      - 8080:8080
 
   web:
     container_name: web
