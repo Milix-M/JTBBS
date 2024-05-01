@@ -12,3 +12,6 @@
 - daisyUI(予定)
 ### DB
 - PostgreSQL
+## Todo
+- できることの設計
+- ER図書く
