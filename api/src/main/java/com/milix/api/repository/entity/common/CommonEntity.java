@@ -6,7 +6,9 @@ import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.Date;
 
 
@@ -15,7 +17,8 @@ import java.util.Date;
  * 各Entityで継承して使うのを想定.
  */
 @MappedSuperclass
-@Data
+@Getter
+@Setter
 public class CommonEntity {
 
     /* データ作成日時 */
