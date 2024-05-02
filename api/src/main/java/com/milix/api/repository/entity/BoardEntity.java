@@ -11,6 +11,9 @@ import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * ボードのエンティティ.
+ */
 @Entity
 @Table(name = "boards")
 @Getter
