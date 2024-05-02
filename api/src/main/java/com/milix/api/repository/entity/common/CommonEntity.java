@@ -1,4 +1,4 @@
-package com.milix.api.repository.entity;
+package com.milix.api.repository.entity.common;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.MappedSuperclass;
