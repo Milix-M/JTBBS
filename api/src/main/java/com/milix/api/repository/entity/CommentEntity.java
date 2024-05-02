@@ -23,12 +23,15 @@ public class CommentEntity extends CommonEntity{
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer commentId;
 
+    /* ハンドルネーム */
     @Column(name = "handle_name")
     private String handleName;
 
+    /* コメントの順番 */
     @Column(name = "comment_order_number")
     private Integer commentOrderNumber;
 
+    /* コメント本文 */
     @Column(name = "comment_text")
     private String commentText;
 }
