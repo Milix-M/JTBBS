@@ -28,6 +28,7 @@ public class CommentService {
 
     /**
      * コメントをidから探します.
+     *
      * @param commentId 探すコメント.
      * @return コメントオブジェクト
      */
@@ -40,6 +41,7 @@ public class CommentService {
 
     /**
      * コメントをListで全て返します
+     *
      * @return コメントのリスト
      */
     public List<CommentDto> getCommentList() {
@@ -55,6 +57,7 @@ public class CommentService {
 
     /**
      * コメントを新しく作成します.
+     *
      * @param CommentDto 新しく作るコメント
      * @return 作成したコメント
      */
@@ -69,7 +72,8 @@ public class CommentService {
 
     /**
      * コメントをアップデートします
-     * @param CommentDto アップデートするコメント　オブジェクト.
+     *
+     * @param CommentDto アップデートするコメント オブジェクト.
      * @return アップデート後のコメント
      */
     public CommentDto updateCommentDto(CommentDto CommentDto) {
@@ -83,6 +87,7 @@ public class CommentService {
 
     /**
      * 引数にしていしたコメントを削除します
+     *
      * @param CommentDtoId 削除するコメントのid.
      * @return 実行結果.
      */
