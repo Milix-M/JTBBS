@@ -30,7 +30,7 @@ public class BoardService {
      * ボードをidから探すメソッド
      *
      * @param boardId 探すボードのid.
-     * @return ボード　インスタンス
+     * @return ボード インスタンス
      */
     public BoardDto getBoardById(String boardId) {
         BoardEntity entity = boardRepository.findById(Integer.parseInt(boardId)).get();
@@ -41,6 +41,7 @@ public class BoardService {
 
     /**
      * ボードをListで全て返します
+     *
      * @return ボードのリスト
      */
     public List<BoardDto> getBoardList() {
@@ -56,6 +57,7 @@ public class BoardService {
 
     /**
      * 新しくボードを作成します
+     *
      * @param board 新しく作るボード
      * @return 作成後のボード
      */
@@ -70,6 +72,7 @@ public class BoardService {
 
     /**
      * ボードの情報をアップデートします
+     *
      * @param board アップデートするボード
      * @return アップデート後のボード
      */
@@ -84,6 +87,7 @@ public class BoardService {
 
     /**
      * 引数に指定したボードを削除します
+     *
      * @param boardId 削除するボードのid.
      * @return 成功: true 失敗: false
      */
