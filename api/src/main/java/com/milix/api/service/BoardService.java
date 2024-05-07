@@ -98,7 +98,10 @@ public class BoardService {
     }
 
     private void copyEntityToBean(BoardEntity entity, BoardDto board) {
-        BeanUtils.copyProperties(entity, board);
+        board.setId(String.valueOf(entity.getBoardId()));
+        board.setName(entity.getBoardName());
+        board.setCreatedAt(String.valueOf(entity.getCreatedAt()));
+        board.setUpdatedAt(String.valueOf(entity.getUpdatedAt()));
     }
 
     private void copyBeanToEntityForInsert(BoardDto board, BoardEntity entity) {
