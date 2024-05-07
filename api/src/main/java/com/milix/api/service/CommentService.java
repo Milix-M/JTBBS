@@ -96,7 +96,12 @@ public class CommentService {
     }
 
     private void copyEntityToBean(CommentEntity entity, CommentDto comment) {
-        BeanUtils.copyProperties(entity, comment);
+        comment.setId(String.valueOf(entity.getCommentId()));
+        comment.setHandleName(entity.getHandleName());
+        comment.setCommentOrderNumber(String.valueOf(entity.getCommentOrderNumber()));
+        comment.setCommentText(entity.getCommentText());
+        comment.setCreatedAt(String.valueOf(entity.getCreatedAt()));
+        comment.setUpdatedAt(String.valueOf(entity.getUpdatedAt()));
     }
 
     private void copyBeanToEntityForInsert(CommentDto comment, CommentEntity entity) {
