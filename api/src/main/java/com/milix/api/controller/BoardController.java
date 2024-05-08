@@ -45,7 +45,7 @@ public class BoardController {
     public HttpResponseDto createBoard(@RequestBody BoardDto board) {
         var httpResponseDto = new HttpResponseDto();
         BoardDto newBoard = boardService.createBoard(board);
-        httpResponseDto.setHttpStatus(HttpStatus.OK);
+        httpResponseDto.setHttpStatus(HttpStatus.CREATED);
         httpResponseDto.setResponseData(newBoard);
         return httpResponseDto;
     }
@@ -55,7 +55,7 @@ public class BoardController {
         var httpResponseDto = new HttpResponseDto();
         board.setId(boardid);
         BoardDto updatedBoard = boardService.updateBoard(board);
-        httpResponseDto.setHttpStatus(HttpStatus.OK);
+        httpResponseDto.setHttpStatus(HttpStatus.CREATED);
         httpResponseDto.setResponseData(updatedBoard);
         return httpResponseDto;
     }
