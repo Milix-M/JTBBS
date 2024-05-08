@@ -17,12 +17,24 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PutMapping;
 
+/**
+ * ボードのコントローラー.
+ */
 @RestController
 public class BoardController {
 
+    /**
+     * DI.
+     */
     @Autowired
     private BoardService boardService;
 
+    /**
+     * ボードの情報を取得します.
+     *
+     * @param boardId 情報を取得したいボードのId.
+     * @return ResponseDataにボードオブジェクトをsetしたhttpResponceDto オブジェクト.
+     */
     @GetMapping("/api/board/{boardId}")
     public HttpResponseDto getBoardById(@PathVariable("boardId") String boardId) {
         var httpResponseDto = new HttpResponseDto();
@@ -32,6 +44,11 @@ public class BoardController {
         return httpResponseDto;
     }
 
+    /**
+     * 現在存在するボード一覧を返します.
+     *
+     * @return ボードのリスト.
+     */
     @GetMapping("/api/board")
     public HttpResponseDto getBoardList() {
         var httpResponseDto = new HttpResponseDto();
@@ -41,6 +58,12 @@ public class BoardController {
         return httpResponseDto;
     }
 
+    /**
+     * 新しくボードを作成します.
+     *
+     * @param board BoardDto オブジェクト.
+     * @return 作成したBoardDto オブジェクトがセットされたHttpResponceDtoオブジェクト.
+     */
     @PostMapping("/api/board")
     public HttpResponseDto createBoard(@RequestBody BoardDto board) {
         var httpResponseDto = new HttpResponseDto();
@@ -50,6 +73,13 @@ public class BoardController {
         return httpResponseDto;
     }
 
+    /**
+     * ボードの情報を更新します.
+     *
+     * @param boardid 更新するボードのid.
+     * @param board   更新したいボード情報が入った BoardDto オブジェクト.
+     * @return 更新したBoardDtoオブジェクトがセットされたHttpResponceDtoオブジェクト.
+     */
     @PutMapping("/api/board/{boardId}")
     public HttpResponseDto updateBoard(@PathVariable("boardId") String boardid, @RequestBody BoardDto board) {
         var httpResponseDto = new HttpResponseDto();
@@ -60,6 +90,12 @@ public class BoardController {
         return httpResponseDto;
     }
 
+    /**
+     * 指定したボードを削除します
+     *
+     * @param boardId 削除したいボードのid.
+     * @return 削除結果.
+     */
     @DeleteMapping("/api/board/{boardId}")
     public HttpResponseDto deleteBoard(@PathVariable("boardId") String boardId) {
         var httpResponseDto = new HttpResponseDto();
