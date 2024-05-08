@@ -76,9 +76,10 @@ public class BoardService {
      * @return アップデート後のボード
      */
     public BoardDto updateBoard(BoardDto board) {
-        var entity = new BoardEntity();
-        copyBeanToEntityForUpdate(board, entity);
-        var updatedEntity = boardRepository.save(entity);
+        // FIX ME: 返却されるcreatedAtとupdatedAtの値がおかしい場合があるので直す.
+        BoardEntity existingEntity = boardRepository.findById(Integer.parseInt(board.getId())).get();
+        copyBeanToEntityForUpdate(board, existingEntity);
+        var updatedEntity = boardRepository.save(existingEntity);
         var updatedBoard = new BoardDto();
         copyEntityToBean(updatedEntity, updatedBoard);
         return updatedBoard;
