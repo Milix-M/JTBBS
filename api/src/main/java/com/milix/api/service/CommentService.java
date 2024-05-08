@@ -57,12 +57,12 @@ public class CommentService {
     /**
      * コメントを新しく作成します.
      *
-     * @param CommentDto 新しく作るコメント
+     * @param commentDto 新しく作るコメント
      * @return 作成したコメント
      */
-    public CommentDto createCommentDto(CommentDto CommentDto) {
+    public CommentDto createCommentDto(CommentDto commentDto) {
         CommentEntity entity = new CommentEntity();
-        copyBeanToEntityForInsert(CommentDto, entity);
+        copyBeanToEntityForInsert(commentDto, entity);
         CommentEntity createdEntity = commentRepository.save(entity);
         CommentDto newCommentDto = new CommentDto();
         copyEntityToBean(createdEntity, newCommentDto);
@@ -72,13 +72,14 @@ public class CommentService {
     /**
      * コメントをアップデートします
      *
-     * @param CommentDto アップデートするコメント オブジェクト.
+     * @param comment アップデートするコメント オブジェクト.
      * @return アップデート後のコメント
      */
-    public CommentDto updateCommentDto(CommentDto CommentDto) {
-        CommentEntity entity = new CommentEntity();
-        copyBeanToEntityForUpdate(CommentDto, entity);
-        CommentEntity updatedEntity = commentRepository.save(entity);
+    public CommentDto updateCommentDto(CommentDto comment) {
+        // FIX ME: 返却されるcreatedAtとupdatedAtの値がおかしい場合があるので直す.
+        CommentEntity existingEntity = commentRepository.findById(Integer.parseInt(comment.getId())).get();
+        copyBeanToEntityForUpdate(comment, existingEntity);
+        var updatedEntity = commentRepository.save(existingEntity);
         CommentDto updatedCommentDto = new CommentDto();
         copyEntityToBean(updatedEntity, updatedCommentDto);
         return updatedCommentDto;
@@ -87,12 +88,12 @@ public class CommentService {
     /**
      * 引数にしていしたコメントを削除します
      *
-     * @param CommentDtoId 削除するコメントのid.
+     * @param commentDtoId 削除するコメントのid.
      * @return 実行結果.
      */
-    public boolean deleteCommentDtoById(String CommentDtoId) {
+    public boolean deleteCommentDtoById(String commentDtoId) {
         try {
-            commentRepository.deleteById(Integer.parseInt(CommentDtoId));
+            commentRepository.deleteById(Integer.parseInt(commentDtoId));
         } catch (IllegalArgumentException e) {
             return false;
         }
