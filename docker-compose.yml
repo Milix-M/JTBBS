@@ -23,6 +23,9 @@ services:
     tty: true
     environment:
       - CHOKIDAR_USEPOLLING=true
+      - WATCHPACK_POLLING=true
+    volumes:
+      - ./web:/app
     depends_on:
       - api
     ports:
