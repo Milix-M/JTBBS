@@ -34,6 +34,6 @@ public class BoardEntity extends CommonEntity {
     private String boardName;
 
     /* Comments */
-    @OneToMany
-    List<CommonEntity> comments;
+    @OneToMany(mappedBy = "board")
+    private List<CommonEntity> comments;
 }
