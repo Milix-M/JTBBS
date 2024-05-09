@@ -9,3 +9,7 @@ export interface BoardType {
   id?: number;
   board_name: string;
 }
+
+export interface ErrorResponce {
+  detail: string;
+}
