@@ -41,6 +41,6 @@ public class CommentEntity extends CommonEntity{
     private String commentText;
 
     @ManyToOne
-    @JoinColumn(name = "comment_id")
+    @JoinColumn(name = "board_id")
     private BoardEntity board;
 }
