@@ -60,13 +60,13 @@ public class CommentController {
     /**
      * 新しくコメントを作成します.
      *
-     * @param commet 作成したいデータの入ったCommentDtoオブジェクト.
+     * @param comment 作成したいデータの入ったCommentDtoオブジェクト.
      * @return 作成したCommentDtoがセットされたHttpResponceDtoオブジェクト.
      */
     @PostMapping("/api/comment")
-    public HttpResponseDto createComment(@RequestBody CommentDto commet) {
+    public HttpResponseDto createComment(@RequestBody CommentDto comment) {
         var httpResponseDto = new HttpResponseDto();
-        CommentDto newComment = commentService.createCommentDto(commet);
+        CommentDto newComment = commentService.createCommentDto(comment);
         httpResponseDto.setHttpStatus(HttpStatus.CREATED);
         httpResponseDto.setResponseData(newComment);
         return httpResponseDto;
