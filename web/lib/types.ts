@@ -1,3 +1,15 @@
+export interface HttpResponseType {
+  httpStatus: string;
+  message?: string;
+}
+export interface CommentResType extends HttpResponseType {
+  responseData: CommentType[];
+}
+
+export interface BoardResType extends HttpResponseType {
+  responseData: BoardType[];
+}
+
 export interface CommentType {
   id?: number;
   handle_name?: string;
