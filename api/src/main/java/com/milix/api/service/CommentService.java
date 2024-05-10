@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.milix.api.repository.BoardRepository;
 import com.milix.api.repository.CommentRepository;
 import com.milix.api.repository.entity.CommentEntity;
 import com.milix.api.service.dto.CommentDto;
@@ -24,6 +25,12 @@ public class CommentService {
      */
     @Autowired
     private CommentRepository commentRepository;
+
+    /**
+     * DI.
+     */
+    @Autowired
+    private BoardRepository boardRepository;
 
     /**
      * コメントをidから探します.
@@ -105,6 +112,7 @@ public class CommentService {
         comment.setHandleName(entity.getHandleName());
         comment.setCommentOrderNumber(String.valueOf(entity.getCommentOrderNumber()));
         comment.setCommentText(entity.getCommentText());
+        comment.setBoardId(String.valueOf(entity.getBoard().getBoardId()));
         comment.setCreatedAt(String.valueOf(entity.getCreatedAt()));
         comment.setUpdatedAt(String.valueOf(entity.getUpdatedAt()));
     }
@@ -113,9 +121,15 @@ public class CommentService {
         if (!"".equals(comment.getHandleName())) {
             entity.setHandleName(comment.getHandleName());
         }
-        // if (!"".equals(comment.getCommentOrderNumber())) {
-        //     entity.setCommentOrderNumber(Integer.parseInt(comment.getCommentOrderNumber()));
-        // }
+
+        // EntityにBoard Entityを格納しなければならないのでBoardRepositoryを呼び出し
+        // コメントEntityをfindByIdし、格納
+        if (!"".equals(comment.getBoardId())) {
+            entity.setBoard(
+                    boardRepository.findById(
+                            Integer.parseInt(comment.getBoardId())).get());
+        }
+
         if (!"".equals(comment.getCommentText())) {
             entity.setCommentText(comment.getCommentText());
         }

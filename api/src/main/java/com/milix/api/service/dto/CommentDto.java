@@ -15,6 +15,8 @@ public class CommentDto {
 
     private String commentText;
 
+    private String boardId;
+
     private String createdAt;
 
     private String updatedAt;
