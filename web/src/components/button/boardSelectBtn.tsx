@@ -8,7 +8,7 @@ interface BoardSelectBtnProps {
 
 const BoardSelectBtn: FC<BoardSelectBtnProps> = (props) => {
   return (
-    <div>
+    <div className="m-1">
       <Link href={props.url}>
         <button className="btn btn-neutral">{props.boardName}</button>
       </Link>
