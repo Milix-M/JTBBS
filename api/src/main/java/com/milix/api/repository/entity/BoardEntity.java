@@ -35,5 +35,5 @@ public class BoardEntity extends CommonEntity {
 
     /* Comments */
     @OneToMany(mappedBy = "board")
-    private List<CommonEntity> comments;
+    private List<CommentEntity> comments;
 }
