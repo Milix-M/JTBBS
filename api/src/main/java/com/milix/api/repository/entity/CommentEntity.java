@@ -33,7 +33,7 @@ public class CommentEntity extends CommonEntity {
     private String handleName;
 
     /* コメント本文 */
-    @Column(name = "comment_text", nullable = false)
+    @Column(name = "comment_text", nullable = false, length = 500)
     private String commentText;
 
     /* ボードid(FK) */
