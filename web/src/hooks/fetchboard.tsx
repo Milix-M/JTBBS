@@ -19,6 +19,6 @@ export const useBoardList = () => {
     data: boards,
     error,
     isValidating: isLoading
-  } = useSWR<BoardType[], ErrorResponce>('/api/board/', fetcher)
+  } = useSWR<BoardType[], ErrorResponce>('/api/board', fetcher)
   return { boards, isLoading, error }
 }
