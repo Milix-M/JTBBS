@@ -8,7 +8,9 @@ import org.springframework.stereotype.Service;
 
 import com.milix.api.repository.BoardRepository;
 import com.milix.api.repository.entity.BoardEntity;
+import com.milix.api.repository.entity.CommentEntity;
 import com.milix.api.service.dto.BoardDto;
+import com.milix.api.service.dto.CommentDto;
 
 import jakarta.transaction.Transactional;
 
@@ -106,6 +108,25 @@ public class BoardService {
         board.setName(entity.getBoardName());
         board.setCreatedAt(String.valueOf(entity.getCreatedAt()));
         board.setUpdatedAt(String.valueOf(entity.getUpdatedAt()));
+
+        // コメントtest
+        // nullじゃなければコメントをコピー
+        // TODO: もっといい書き方できるはず
+        if (entity.getComments() != null) {
+            List<CommentDto> comments = new ArrayList<>();
+            for (CommentEntity c : entity.getComments()) {
+                var commentTmp = new CommentDto();
+                commentTmp.setId(String.valueOf(c.getCommentId()));
+                commentTmp.setHandleName(c.getHandleName());
+                commentTmp.setCommentOrderNumber(String.valueOf(c.getCommentOrderNumber()));
+                commentTmp.setCommentText(c.getCommentText());
+                commentTmp.setUpdatedAt(String.valueOf(c.getUpdatedAt()));
+                commentTmp.setCreatedAt(String.valueOf(c.getCreatedAt()));
+
+                comments.add(commentTmp);
+            }
+            board.setComments(comments);
+        }
     }
 
     private void copyBeanToEntityForInsert(BoardDto board, BoardEntity entity) {

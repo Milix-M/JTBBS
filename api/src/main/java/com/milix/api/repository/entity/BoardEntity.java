@@ -1,5 +1,7 @@
 package com.milix.api.repository.entity;
 
+import java.util.List;
+
 import com.milix.api.repository.entity.common.CommonEntity;
 
 import jakarta.persistence.Column;
@@ -7,6 +9,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
@@ -29,4 +32,8 @@ public class BoardEntity extends CommonEntity {
     /* ボードの名前 */
     @Column(name = "board_name")
     private String boardName;
+
+    /* ボードに対するコメント */
+    @OneToMany(mappedBy = "board")
+    private List<CommentEntity> comments;
 }
