@@ -5,8 +5,6 @@ import { useBoardList } from "@/hooks/fetchboard";
 const Index = () => {
   const { boards, isLoading, error } = useBoardList();
 
-  console.log(boards)
-
   return (
     <div>
       <div>
