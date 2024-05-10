@@ -121,6 +121,7 @@ public class CommentService {
             entity.setHandleName(comment.getHandleName());
         }
 
+        // TODO: もっといい書き方したい
         // EntityにBoard Entityを格納しなければならないのでBoardRepositoryを呼び出し
         // コメントEntityをfindByIdし、格納
         if (!"".equals(comment.getBoardId())) {
