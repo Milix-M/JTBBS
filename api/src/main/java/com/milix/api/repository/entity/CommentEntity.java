@@ -20,7 +20,7 @@ import lombok.Setter;
 @Table(name = "comments")
 @Getter
 @Setter
-public class CommentEntity extends CommonEntity{
+public class CommentEntity extends CommonEntity {
 
     /* コメントID */
     @Id
