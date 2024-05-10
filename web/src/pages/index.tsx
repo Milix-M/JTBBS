@@ -18,11 +18,14 @@ const Index = () => {
         <h4 className="text-center font-bold">掲示板一覧</h4>
         <div className="flex justify-center p-2">
           <div>
-            {boards !== undefined && (
+            {boards !== undefined &&
               boards.responseData.map((board, index) => (
-                <BoardSelectBtn boardName={board.name} url={`/board/${board.id}`} key={index}/>
-              ))
-            )}
+                <BoardSelectBtn
+                  boardName={board.name}
+                  url={`/board/${board.id}`}
+                  key={index}
+                />
+              ))}
           </div>
         </div>
       </div>
