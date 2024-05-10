@@ -30,7 +30,7 @@ public class BoardEntity extends CommonEntity {
     private Integer boardId;
 
     /* ボードの名前 */
-    @Column(name = "board_name")
+    @Column(name = "board_name", length = 50)
     private String boardName;
 
     /* ボードに対するコメント */
