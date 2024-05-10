@@ -33,7 +33,7 @@ public class BoardEntity extends CommonEntity {
     @Column(name = "board_name")
     private String boardName;
 
-    /* Comments */
+    /* ボードに対するコメント */
     @OneToMany(mappedBy = "board")
     private List<CommentEntity> comments;
 }

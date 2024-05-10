@@ -40,6 +40,7 @@ public class CommentEntity extends CommonEntity{
     @Column(name = "comment_text")
     private String commentText;
 
+    /* ボードid(FK) */
     @ManyToOne
     @JoinColumn(name = "board_id")
     private BoardEntity board;
