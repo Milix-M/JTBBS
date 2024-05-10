@@ -6,6 +6,7 @@ import com.milix.api.repository.entity.common.CommonEntity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -34,6 +35,6 @@ public class BoardEntity extends CommonEntity {
     private String boardName;
 
     /* ボードに対するコメント */
-    @OneToMany(mappedBy = "board")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "board")
     private List<CommentEntity> comments;
 }

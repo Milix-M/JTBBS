@@ -50,7 +50,9 @@ public class BoardService {
         List<BoardEntity> boardEntityList = boardRepository.findAll();
         boardEntityList.forEach(entity -> {
             var board = new BoardDto();
-            copyEntityToBean(entity, board);
+            // copyEntityToBean(entity, board);
+            // N+1回避
+            copyEntityToBeanLessComments(entity, board);
             boards.add(board);
         });
         return boards;
@@ -128,6 +130,14 @@ public class BoardService {
             }
             board.setComments(comments);
         }
+    }
+
+    // N+1問題回避用
+    private void copyEntityToBeanLessComments(BoardEntity entity, BoardDto board) {
+        board.setId(String.valueOf(entity.getBoardId()));
+        board.setName(entity.getBoardName());
+        board.setCreatedAt(String.valueOf(entity.getCreatedAt()));
+        board.setUpdatedAt(String.valueOf(entity.getUpdatedAt()));
     }
 
     private void copyBeanToEntityForInsert(BoardDto board, BoardEntity entity) {
