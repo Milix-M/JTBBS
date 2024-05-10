@@ -11,7 +11,6 @@ import lombok.Setter;
 
 import java.util.Date;
 
-
 /**
  * Entityにデータ登録日時と更新日時をセットするためのクラス
  * 各Entityで継承して使うのを想定.
@@ -22,12 +21,12 @@ import java.util.Date;
 public class CommonEntity {
 
     /* データ作成日時 */
-    @Column(name = "created_at")
+    @Column(name = "created_at", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
 
     /* データ更新日時 */
-    @Column(name = "updated_at")
+    @Column(name = "updated_at", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedAt;
 
