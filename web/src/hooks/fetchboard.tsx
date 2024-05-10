@@ -1,5 +1,5 @@
 import useSWR from 'swr'
-import { BoardType, ErrorResponce } from '../../lib/types'
+import { BoardResType, ErrorResponce } from '../../lib/types'
 import fetcher from '../../lib/fetcher'
 
 export const useBoardInfo = (board_id: string) => {
@@ -7,7 +7,7 @@ export const useBoardInfo = (board_id: string) => {
     data: boardData,
     error,
     isValidating: isLoading
-  } = useSWR<BoardType, ErrorResponce>(
+  } = useSWR<BoardResType, ErrorResponce>(
     board_id ? `/api/board/${board_id}` : null,
     fetcher
   )
@@ -19,6 +19,6 @@ export const useBoardList = () => {
     data: boards,
     error,
     isValidating: isLoading
-  } = useSWR<BoardType[], ErrorResponce>('/api/board', fetcher)
+  } = useSWR<BoardResType, ErrorResponce>('/api/board', fetcher)
   return { boards, isLoading, error }
 }
