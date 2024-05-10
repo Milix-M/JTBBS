@@ -1,6 +1,6 @@
 import useSwitchTheme from '@/utils/theme'
 import { useTheme } from 'next-themes'
-import { FC } from 'react'
+import { FC, useEffect, useState } from 'react'
 import { BsFillSunFill, BsMoonStarsFill } from 'react-icons/bs'
 
 interface ThemeToggleProps {
@@ -8,13 +8,21 @@ interface ThemeToggleProps {
 }
 
 export const ThemeToggle: FC<ThemeToggleProps> = props => {
+  const [mounted, setMounted] = useState(false)
   const { theme, setTheme } = useTheme()
+  const themeSwitcher = useSwitchTheme()
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   return (
     <div>
-      <button onClick={useSwitchTheme()} className='btn'>
-        {theme === 'dark' ? <BsFillSunFill /> : <BsMoonStarsFill />}
-      </button>
+      {mounted && (
+        <button onClick={themeSwitcher} className='btn'>
+          {theme === 'dark' ? <BsFillSunFill /> : <BsMoonStarsFill />}
+        </button>
+      )}
     </div>
   )
 }
