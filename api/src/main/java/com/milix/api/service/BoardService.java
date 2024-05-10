@@ -121,6 +121,8 @@ public class BoardService {
                 commentTmp.setCommentText(c.getCommentText());
                 commentTmp.setUpdatedAt(String.valueOf(c.getUpdatedAt()));
                 commentTmp.setCreatedAt(String.valueOf(c.getCreatedAt()));
+                // 汚い
+                commentTmp.setBoardId(String.valueOf(c.getBoard().getBoardId()));
 
                 comments.add(commentTmp);
             }
