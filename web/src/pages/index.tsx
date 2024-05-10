@@ -17,7 +17,7 @@ const Index = () => {
       <div className="mt-5">
         <h4 className="text-center font-bold">掲示板一覧</h4>
         <div className="flex justify-center p-2">
-          <div>
+          <div className="flex justify-center">
             {boards !== undefined &&
               boards.responseData.map((board, index) => (
                 <BoardSelectBtn
