@@ -33,15 +33,15 @@ public class CommentEntity extends CommonEntity{
     private String handleName;
 
     /* コメントの順番 */
-    @Column(name = "comment_order_number")
+    @Column(name = "comment_order_number", nullable = false)
     private Integer commentOrderNumber;
 
     /* コメント本文 */
-    @Column(name = "comment_text")
+    @Column(name = "comment_text", nullable = false)
     private String commentText;
 
     /* ボードid(FK) */
     @ManyToOne
-    @JoinColumn(name = "board_id")
+    @JoinColumn(name = "board_id", nullable = false)
     private BoardEntity board;
 }
