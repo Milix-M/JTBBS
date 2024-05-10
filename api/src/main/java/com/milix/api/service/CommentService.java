@@ -113,9 +113,9 @@ public class CommentService {
         if (!"".equals(comment.getHandleName())) {
             entity.setHandleName(comment.getHandleName());
         }
-        if (!"".equals(comment.getCommentOrderNumber())) {
-            entity.setCommentOrderNumber(Integer.parseInt(comment.getCommentOrderNumber()));
-        }
+        // if (!"".equals(comment.getCommentOrderNumber())) {
+        //     entity.setCommentOrderNumber(Integer.parseInt(comment.getCommentOrderNumber()));
+        // }
         if (!"".equals(comment.getCommentText())) {
             entity.setCommentText(comment.getCommentText());
         }
