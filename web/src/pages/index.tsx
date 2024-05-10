@@ -1,7 +1,12 @@
 import BoardSelectBtn from "@/components/button/boardSelectBtn";
 import getLayout from "@/components/layouts/non_headder";
+import { useBoardList } from "@/hooks/fetchboard";
 
 const Index = () => {
+  const { boards, isLoading, error } = useBoardList();
+
+  console.log(boards)
+
   return (
     <div>
       <div>
@@ -15,7 +20,11 @@ const Index = () => {
         <h4 className="text-center font-bold">掲示板一覧</h4>
         <div className="flex justify-center p-2">
           <div>
-            <BoardSelectBtn url="/java" boardName="java" />
+            {boards !== undefined && (
+              boards.responseData.map((board, index) => (
+                <BoardSelectBtn boardName={board.name} url={`/board/${board.id}`} key={index}/>
+              ))
+            )}
           </div>
         </div>
       </div>

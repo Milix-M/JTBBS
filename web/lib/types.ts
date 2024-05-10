@@ -19,7 +19,7 @@ export interface CommentType {
 
 export interface BoardType {
   id?: number;
-  board_name: string;
+  name: string;
 }
 
 export interface ErrorResponce {
