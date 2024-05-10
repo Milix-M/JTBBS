@@ -11,8 +11,6 @@ public class CommentDto {
 
     private String handleName;
 
-    private String commentOrderNumber;
-
     private String commentText;
 
     private String boardId;

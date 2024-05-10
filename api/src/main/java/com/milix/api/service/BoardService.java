@@ -118,7 +118,6 @@ public class BoardService {
                 var commentTmp = new CommentDto();
                 commentTmp.setId(String.valueOf(c.getCommentId()));
                 commentTmp.setHandleName(c.getHandleName());
-                commentTmp.setCommentOrderNumber(String.valueOf(c.getCommentOrderNumber()));
                 commentTmp.setCommentText(c.getCommentText());
                 commentTmp.setUpdatedAt(String.valueOf(c.getUpdatedAt()));
                 commentTmp.setCreatedAt(String.valueOf(c.getCreatedAt()));

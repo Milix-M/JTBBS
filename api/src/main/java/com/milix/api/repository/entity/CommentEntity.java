@@ -32,10 +32,6 @@ public class CommentEntity extends CommonEntity{
     @Column(name = "handle_name")
     private String handleName;
 
-    /* コメントの順番 */
-    @Column(name = "comment_order_number", nullable = false)
-    private Integer commentOrderNumber;
-
     /* コメント本文 */
     @Column(name = "comment_text", nullable = false)
     private String commentText;

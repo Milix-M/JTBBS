@@ -110,7 +110,6 @@ public class CommentService {
     private void copyEntityToBean(CommentEntity entity, CommentDto comment) {
         comment.setId(String.valueOf(entity.getCommentId()));
         comment.setHandleName(entity.getHandleName());
-        comment.setCommentOrderNumber(String.valueOf(entity.getCommentOrderNumber()));
         comment.setCommentText(entity.getCommentText());
         comment.setBoardId(String.valueOf(entity.getBoard().getBoardId()));
         comment.setCreatedAt(String.valueOf(entity.getCreatedAt()));
