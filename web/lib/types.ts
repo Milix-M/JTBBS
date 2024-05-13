@@ -1,7 +1,7 @@
 export interface CommentType {
   id?: number;
-  handle_name?: string;
-  comment_text: string;
+  handleName?: string;
+  commentText: string;
   createdAt: string;
 }
 
