@@ -1,4 +1,5 @@
 import CommentItem from "@/components/comment/commentItem";
+import getLayout from "@/components/layouts/main";
 import { useBoardInfo } from "@/hooks/fetchboard";
 import { useRouter } from "next/router";
 
@@ -31,5 +32,7 @@ const Board = () => {
     </div>
   );
 };
+
+Board.getLayout = getLayout
 
 export default Board;
