@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.milix.api.repository.entity.common.CommonEntity;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -35,6 +36,6 @@ public class BoardEntity extends CommonEntity {
     private String boardName;
 
     /* ボードに対するコメント */
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "board")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "board", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<CommentEntity> comments;
 }

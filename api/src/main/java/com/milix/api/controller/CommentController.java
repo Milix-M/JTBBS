@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.milix.api.service.CommentService;
 import com.milix.api.service.dto.CommentDto;
-import com.milix.api.service.dto.HttpResponseDto;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 /**
  * コメントのコントローラー.
@@ -32,45 +32,36 @@ public class CommentController {
      * 指定したコメントの情報を返します.
      *
      * @param commentId 取得したいコメントのid.
-     * @return CommentDtoがsetされたHttpResponceオブジェクト
+     * @return CommentDtoオブジェクト
      */
     @GetMapping("/api/comment/{commentId}")
-    public HttpResponseDto getCommentById(@PathVariable("commentId") String commentId) {
-        var httpResponseDto = new HttpResponseDto();
+    public CommentDto getCommentById(@PathVariable("commentId") String commentId) {
         CommentDto comment = commentService.getCommentById(commentId);
-        httpResponseDto.setHttpStatus(HttpStatus.OK);
-        httpResponseDto.setResponseData(comment);
-        return httpResponseDto;
+        return comment;
     }
 
     /**
      * 存在するコメント一覧を返します
      *
-     * @return コメント一覧をセットしたhttpResponceDto.
+     * @return コメント一覧.
      */
     @GetMapping("/api/comment")
-    public HttpResponseDto getCommentList() {
-        var httpResponseDto = new HttpResponseDto();
+    public List<CommentDto> getCommentList() {
         List<CommentDto> comments = commentService.getCommentList();
-        httpResponseDto.setHttpStatus(HttpStatus.OK);
-        httpResponseDto.setResponseData(comments);
-        return httpResponseDto;
+        return comments;
     }
 
-    //TODO: BoardIdとForeignKeyできるようにする
     /**
      * 新しくコメントを作成します.
      *
      * @param comment 作成したいデータの入ったCommentDtoオブジェクト.
-     * @return 作成したCommentDtoがセットされたHttpResponceDtoオブジェクト.
+     * @return 作成したCommentDtoオブジェクト.
      */
     @PostMapping("/api/comment")
-    public HttpResponseDto createComment(@RequestBody CommentDto comment) {
-        var httpResponseDto = new HttpResponseDto();
+    @ResponseStatus(HttpStatus.CREATED)
+    public CommentDto createComment(@RequestBody CommentDto comment) {
         CommentDto newComment = commentService.createCommentDto(comment);
-        httpResponseDto.setHttpStatus(HttpStatus.CREATED);
-        httpResponseDto.setResponseData(newComment);
-        return httpResponseDto;
+        return newComment;
     }
 
     /**
@@ -78,34 +69,23 @@ public class CommentController {
      *
      * @param commentId 更新したいコメントのid.
      * @param comment   更新したいコメントの情報が入ったCommentDtoオブジェクト
-     * @return 更新後のCommentDtoがセットされたCommentDtoオブジェクト.
+     * @return 更新後のCommentDtoオブジェクト.
      */
     @PutMapping("/api/comment/{commentId}")
-    public HttpResponseDto updateComment(@PathVariable("commentId") String commentId, @RequestBody CommentDto comment) {
-        var httpResponseDto = new HttpResponseDto();
+    @ResponseStatus(HttpStatus.CREATED)
+    public CommentDto updateComment(@PathVariable("commentId") String commentId, @RequestBody CommentDto comment) {
         comment.setId(commentId);
         CommentDto updatedComment = commentService.updateCommentDto(comment);
-        httpResponseDto.setHttpStatus(HttpStatus.CREATED);
-        httpResponseDto.setResponseData(updatedComment);
-        return httpResponseDto;
+        return updatedComment;
     }
 
     /**
      * 指定したコメントを削除します
      *
      * @param commentId 削除するコメントのId.
-     * @return 処理結果.
      */
     @DeleteMapping("/api/comment/{commentId}")
-    public HttpResponseDto deleteComment(@PathVariable("commentId") String commentId) {
-        var httpResponseDto = new HttpResponseDto();
-        if (commentService.deleteCommentDtoById(commentId)) {
-            httpResponseDto.setHttpStatus(HttpStatus.OK);
-            httpResponseDto.setMessage("delete ok.");
-        } else {
-            httpResponseDto.setHttpStatus(HttpStatus.BAD_REQUEST);
-            httpResponseDto.setMessage("bad request.");
-        }
-        return httpResponseDto;
+    public void deleteComment(@PathVariable("commentId") String commentId) {
+        commentService.deleteCommentDtoById(commentId);
     }
 }
