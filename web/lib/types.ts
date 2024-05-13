@@ -1,25 +1,15 @@
-export interface HttpResponseType {
-  httpStatus: string;
-  message?: string;
-}
-export interface CommentResType extends HttpResponseType {
-  responseData: CommentType[];
-}
-
-export interface BoardResType extends HttpResponseType {
-  responseData: BoardType[];
-}
-
 export interface CommentType {
   id?: number;
   handle_name?: string;
-  comment_order_number?: number;
   comment_text: string;
+  createdAt: string;
 }
 
 export interface BoardType {
   id?: number;
   name: string;
+  comments?: CommentType[]
+  createdAt: string;
 }
 
 export interface ErrorResponce {
