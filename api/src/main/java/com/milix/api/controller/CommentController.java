@@ -57,7 +57,6 @@ public class CommentController {
         return httpResponseDto;
     }
 
-    //TODO: BoardIdとForeignKeyできるようにする
     /**
      * 新しくコメントを作成します.
      *
