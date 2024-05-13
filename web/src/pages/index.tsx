@@ -19,7 +19,7 @@ const Index = () => {
         <div className="flex justify-center p-2">
           <div className="flex justify-center">
             {boards !== undefined &&
-              boards.responseData.map((board, index) => (
+              boards.map((board, index) => (
                 <BoardSelectBtn
                   boardName={board.name}
                   url={`/board/${board.id}`}
